@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="@dimen/margin_05">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/userInfoPhotoContainer"
+        android:layout_width="76dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="@dimen/margin_1"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/userInfoPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/userInfoName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_1"
+        android:textAlignment="textStart"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/userInfoPhotoContainer"
+        app:layout_constraintTop_toTopOf="@id/userInfoPhotoContainer"
+        tools:text="Raimonds Vejonis" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/userInfoCarsRecyclerContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_05"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/userInfoPhotoContainer"
+        app:layout_constraintTop_toBottomOf="@id/userInfoName">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/userInfoCarsRecycler"
+            android:layout_width="wrap_content"
+            android:overScrollMode="never"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_car_icon"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+    </androidx.core.widget.NestedScrollView>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/margin_075"
+        android:background="@color/border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/userInfoCarsRecyclerContainer" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

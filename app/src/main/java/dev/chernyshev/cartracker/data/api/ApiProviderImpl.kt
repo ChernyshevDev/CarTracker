@@ -4,6 +4,7 @@ import com.google.gson.GsonBuilder
 import dev.chernyshev.cartracker.domain.contract.ApiProvider
 import dev.chernyshev.cartracker.domain.entity.UserInfo
 import dev.chernyshev.cartracker.domain.entity.UsersList
+import kotlinx.coroutines.delay
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -12,14 +13,25 @@ import retrofit2.http.Query
 import javax.inject.Inject
 
 private const val scopeTechnologyApiUrl = "http://mobi.connectedcar360.net"
+private const val repeatRequestDelay = 1_500L
 
 class ApiProviderImpl @Inject constructor() : ApiProvider {
-    override fun getUsers(): List<UserInfo> {
-        return getRetrofit()
-            .getUsersList()
-            .execute()
-            .body()
-            ?.data ?: emptyList()
+    override suspend fun getUsers(): List<UserInfo> {
+        return try {
+            val data = getRetrofit()
+                .getUsersList()
+                .execute()
+                .body()
+                ?.data ?: emptyList()
+
+            if (data.isEmpty()) {
+                throw Exception("no user data available")
+            }
+            data
+        } catch (e: Exception) {
+            delay(repeatRequestDelay)
+            getUsers()
+        }
     }
 
     private fun getRetrofit(): ScopeTechnologyApi {

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">CarTracker</string>
+    <string name="google_maps_key" translatable="false">AIzaSyAHepg3Ghr2haT_DPVaMxk4Equ0ijjE0MY</string>
     <string name="common_error_message">Whoops! Something went wrong!</string>
 </resources>

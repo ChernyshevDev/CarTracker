@@ -17,6 +17,10 @@ abstract class BaseFragment<VM : ViewModel, B : ViewBinding> : Fragment() {
     var viewModel: VM? = null
     private var binding: B? = null
 
+    val mainActivity by lazy {
+        requireActivity() as MainActivity
+    }
+
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
