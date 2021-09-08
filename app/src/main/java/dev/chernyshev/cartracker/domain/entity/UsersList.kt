@@ -5,7 +5,7 @@ data class UsersList(
 )
 
 data class UserInfo(
-    val userId: Int? = null,
+    val userid: Int? = null,
     val owner: UserPersonalData? = null,
     val vehicles: List<Vehicle> = emptyList()
 )

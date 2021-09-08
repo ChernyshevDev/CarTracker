@@ -11,7 +11,9 @@ import dagger.Provides
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 import dev.chernyshev.cartracker.data.api.ApiProviderImpl
+import dev.chernyshev.cartracker.data.api.LocationProviderImpl
 import dev.chernyshev.cartracker.domain.contract.ApiProvider
+import dev.chernyshev.cartracker.domain.contract.LocationProvider
 import dev.chernyshev.cartracker.presentation.main_page.MainPageFragment
 import dev.chernyshev.cartracker.presentation.MainActivity
 import dev.chernyshev.cartracker.presentation.main_page.MainPageViewModel
@@ -38,6 +40,11 @@ internal class ProvidersModule {
     fun providesApiProvider(
         apiProviderImpl: ApiProviderImpl
     ): ApiProvider = apiProviderImpl
+
+    @Provides
+    fun provideLocationProvider(
+        locationProviderImpl: LocationProviderImpl
+    ): LocationProvider = locationProviderImpl
 }
 
 @Module

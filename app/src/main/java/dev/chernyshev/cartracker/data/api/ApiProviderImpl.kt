@@ -4,6 +4,9 @@ import com.google.gson.GsonBuilder
 import dev.chernyshev.cartracker.domain.contract.ApiProvider
 import dev.chernyshev.cartracker.domain.entity.UserInfo
 import dev.chernyshev.cartracker.domain.entity.UsersList
+import dev.chernyshev.cartracker.domain.entity.VehicleLocationInfo
+import dev.chernyshev.cartracker.domain.entity.VehiclesLocationsList
+import dev.chernyshev.cartracker.presentation.main_page.UserId
 import kotlinx.coroutines.delay
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -29,8 +32,28 @@ class ApiProviderImpl @Inject constructor() : ApiProvider {
             }
             data
         } catch (e: Exception) {
+            // That`s not common practice though. However this particular api provider throws error quite often
             delay(repeatRequestDelay)
             getUsers()
+        }
+    }
+
+    override suspend fun getUserVehiclesLocation(userId: UserId): List<VehicleLocationInfo> {
+        return try {
+            val data = getRetrofit()
+                .getUserVehiclesLocations(userId = userId.toString())
+                .execute()
+                .body()
+                ?.data ?: emptyList()
+
+            if (data.isEmpty()) {
+                throw Exception("no user vehicles data available")
+            }
+            data
+        } catch (e: Exception) {
+            // That`s not common practice though. However this particular api provider throws error quite often
+            delay(repeatRequestDelay)
+            getUserVehiclesLocation(userId)
         }
     }
 
@@ -53,4 +76,10 @@ interface ScopeTechnologyApi {
     fun getUsersList(
         @Query("op") op: String = "list"
     ): Call<UsersList>
+
+    @GET("/api/?")
+    fun getUserVehiclesLocations(
+        @Query("op") op: String = "getlocations",
+        @Query("userid") userId: String
+    ): Call<VehiclesLocationsList>
 }

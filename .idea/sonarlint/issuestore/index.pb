@@ -15,10 +15,6 @@ x
 Happ/src/main/java/dev/chernyshev/cartracker/presentation/MainActivity.kt,e\3\e3788e7008f55bc58a7cbcd2efe15bb08d283d34
 v
 Fapp/src/main/java/dev/chernyshev/cartracker/domain/entity/UsersList.kt,d\7\d72951d049178869a7b7f67741f944d3bdc39c84
-j
-:app/src/main/java/dev/chernyshev/cartracker/CtViewModel.kt,c\c\cc2e7e46fa8f820975342c27632d232c057e7ad7
-r
-Bapp/src/main/java/dev/chernyshev/cartracker/data/api/AppService.kt,4\a\4a1b78728cbff97e2a6e5dca55341cfc93001b54
 P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 Ü
@@ -27,3 +23,9 @@ Vapp/src/main/java/dev/chernyshev/cartracker/presentation/main_page/MainPageFrag
 Wapp/src/main/java/dev/chernyshev/cartracker/presentation/main_page/MainPageViewModel.kt,f\a\fad1ea036d1f704f1abd27d3d0a1a1804aa97f7f
 x
 Happ/src/main/java/dev/chernyshev/cartracker/presentation/BaseFragment.kt,e\2\e2f458d4470ee4b96f75de2f9f714ea7dae45805
+z
+Japp/src/main/java/dev/chernyshev/cartracker/utils/extensions/ImageUtils.kt,4\7\47dd17e8f78d5d5f8b4f83c1d592d967dadc127e
+Å
+Qapp/src/main/java/dev/chernyshev/cartracker/presentation/views/VehicleInfoView.kt,4\4\440f31d0348b0b504f64bf3c8901da7d277abe60
+}
+Mapp/src/main/java/dev/chernyshev/cartracker/utils/extensions/MapExtensions.kt,7\1\7131fa1b92508da3459687ae933e0e33e974d99c
