@@ -61,7 +61,7 @@ class MainPageFragment :
                 userInfoAdapter.updateItems(this)
                 forEach { userInfo ->
                     userInfo.userid?.let { userId ->
-                        if (state.userVehicleLocations[userId] == null) {
+                        if (state.userVehicleLocations[userId].isNullOrEmpty()) {
                             viewModel?.fetchUserVehiclesLocations(userId)
                             return@forEach
                         }
@@ -69,6 +69,9 @@ class MainPageFragment :
                 }
             }
 
+            vehicleMarkers.values.forEach { marker ->
+                marker.remove()
+            }
             state.userVehicleLocations.forEach {
                 it.value.forEach { info ->
                     var vehicle: Vehicle? = null

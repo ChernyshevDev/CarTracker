@@ -1,5 +1,6 @@
 package dev.chernyshev.cartracker.presentation.main_page
 
+import android.os.CountDownTimer
 import dev.chernyshev.cartracker.BaseViewModel
 import dev.chernyshev.cartracker.domain.contract.ApiProvider
 import dev.chernyshev.cartracker.domain.entity.UserInfo
@@ -13,6 +14,7 @@ import javax.inject.Inject
 class MainPageViewModel @Inject constructor(
     private val apiProvider: ApiProvider
 ) : BaseViewModel<MainPageViewState>() {
+    private val updateTimers = hashMapOf<UserId, CountDownTimer>()
 
     init {
         viewData.value = MainPageViewState(hashMapOf(), hashMapOf())
@@ -44,7 +46,31 @@ class MainPageViewModel @Inject constructor(
                 newViewData?.let {
                     viewData.postValue((it))
                 }
+
+                withContext(Dispatchers.Main) {
+                    startLocationUpdateTimer(userId)
+                }
             }
+        }
+    }
+
+    private fun startLocationUpdateTimer(userId: UserId) {
+        if (updateTimers[userId] == null) {
+            updateTimers[userId] = object : CountDownTimer(30_000, 30_000) {
+                override fun onTick(millisUntilFinished: Long) {
+                }
+
+                override fun onFinish() {
+                    val newViewData = viewData.value?.copy()?.apply {
+                        userVehicleLocations[userId] = emptyList()
+                    }
+                    newViewData?.let {
+                        viewData.postValue((it))
+                    }
+                    this.cancel()
+                    updateTimers.remove(userId)
+                }
+            }.start()
         }
     }
 }
