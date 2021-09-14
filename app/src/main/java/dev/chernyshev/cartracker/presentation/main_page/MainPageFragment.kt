@@ -27,6 +27,7 @@ import dev.chernyshev.cartracker.utils.extensions.displayHeightPixels
 import dev.chernyshev.cartracker.utils.extensions.getLastKnownLocation
 import dev.chernyshev.cartracker.utils.extensions.setCurrentPositionMarker
 import dev.chernyshev.cartracker.utils.extensions.checkIfPermissionGranted
+import dev.chernyshev.cartracker.utils.extensions.getDirections
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -106,7 +107,9 @@ class MainPageFragment :
     private fun showVehicleInfo(vehicle: Vehicle, position: LatLng?, zoom: Float?) {
         requireBinding {
             updateVehicleInfoVisibility(isVisible = true)
-            mainPageBottomSheetVehicleInfo.setData(vehicle)
+            mainPageBottomSheetVehicleInfo.setData(vehicle) {
+                map?.getDirections(requireContext(), position)
+            }
             mainPageBottomSheetVehicleInfo.viewTreeObserver.addOnGlobalLayoutListener(object :
                 OnGlobalLayoutListener {
                 override fun onGlobalLayout() {
@@ -217,7 +220,7 @@ class MainPageFragment :
                     map?.setCurrentPositionMarker(requireContext(), it, 6f)
                 },
                 onError = {
-                    // todo
+                    displayError(message = "location permission error")
                 }
             )
         }

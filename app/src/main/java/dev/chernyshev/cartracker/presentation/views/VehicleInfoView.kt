@@ -15,11 +15,14 @@ class VehicleInfoView @JvmOverloads constructor(
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
     private val binding = ViewVehicleInfoBinding.inflate(LayoutInflater.from(context), this, true)
 
-    fun setData(vehicleInfo: Vehicle) {
+    fun setData(vehicleInfo: Vehicle, getDirectionsCallback: () -> Unit) {
         with(binding) {
             vehicleInfoImage.loadImage(vehicleInfo.foto)
             vehicleInfoRecycler.adapter = VehicleInfoCellAdapter().apply {
                 updateItems(vehicleInfo.toDescriptionPairs(context))
+            }
+            vehicleInfoDirectionsButton.setOnClickListener {
+                getDirectionsCallback()
             }
         }
     }

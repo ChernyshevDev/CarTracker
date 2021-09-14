@@ -1,7 +1,9 @@
 package dev.chernyshev.cartracker.utils.extensions
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Point
+import android.net.Uri
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
@@ -78,5 +80,15 @@ fun GoogleMap.placeVehicleMarker(
             .title(title)
     ).also {
         it.tag = vehicleId
+    }
+}
+
+fun GoogleMap.getDirections(context: Context, position: LatLng?) {
+    position?.let { latLng ->
+        val navigationIntentUri =
+            Uri.parse("https://www.google.com/maps/dir/?api=1&destination=${latLng.latitude},${latLng.longitude}")
+        val mapIntent = Intent(Intent.ACTION_VIEW, navigationIntentUri)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        context.startActivity(mapIntent)
     }
 }

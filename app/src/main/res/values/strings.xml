@@ -1,11 +1,15 @@
 <resources>
     <string name="app_name">CarTracker</string>
     <string name="google_maps_key" translatable="false">AIzaSyAHepg3Ghr2haT_DPVaMxk4Equ0ijjE0MY</string>
-    <string name="common_error_message">Whoops! Something went wrong!</string>
+
+    <string name="common_unknown_error_title">Unknown error occurred</string>
+    <string name="common_unknown_error_message">Whoops! Something went wrong!</string>
+    <string name="common_ok">Ok</string>
 
     <string name="vehicle_brand">Brand</string>
     <string name="vehicle_model">Model</string>
     <string name="vehicle_year">Year</string>
     <string name="vehicle_color">Color</string>
     <string name="vehicle_vin">Vin</string>
+    <string name="get_directions">Get Directions</string>
 </resources>

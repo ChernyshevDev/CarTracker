@@ -29,4 +29,16 @@
         tools:itemCount="5"
         tools:listitem="@layout/item_vehicle_description_cell" />
 
+    <TextView
+        android:id="@+id/vehicleInfoDirectionsButton"
+        style="@style/CarTrackerButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_1"
+        android:layout_marginTop="@dimen/margin_2"
+        android:text="@string/get_directions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vehicleInfoRecycler" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
