@@ -44,7 +44,7 @@ abstract class BaseFragment<VM : ViewModel, B : ViewBinding> : Fragment() {
     }
 
     fun displayError(title: String? = null, message: String? = null) {
-        AlertDialog.Builder(this).apply {
+        AlertDialog.Builder(requireContext()).apply {
             setTitle(title ?: getString(R.string.common_unknown_error_title))
             setMessage(message ?: getString(R.string.common_unknown_error_message))
             setPositiveButton(R.string.common_ok) { _, _ -> }
